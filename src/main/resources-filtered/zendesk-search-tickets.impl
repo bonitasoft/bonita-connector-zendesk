@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<implementation:connectorImplementation xmlns:implementation="http://www.bonitasoft.org/ns/connector/implementation/6.0">
+  <implementationId>${zendesk-search-tickets.impl.id}</implementationId>
+  <implementationVersion>${zendesk-search-tickets.impl.version}</implementationVersion>
+  <definitionId>${zendesk-search-tickets.def.id}</definitionId>
+  <definitionVersion>${zendesk-search-tickets.def.version}</definitionVersion>
+  <implementationClassname>${zendesk-search-tickets.main-class}</implementationClassname>
+  <hasSources>false</hasSources>
+  <description>Zendesk Search Tickets connector implementation</description>
+${connector-dependencies}
+</implementation:connectorImplementation>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition:ConnectorDefinition
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1">
+  <id>${zendesk-add-comment.def.id}</id>
+  <version>${zendesk-add-comment.def.version}</version>
+  <icon>zendesk-icon.png</icon>
+  <category icon="zendesk-icon.png" id="Zendesk"/>
+
+  <!-- Connection inputs -->
+  <input name="subdomain" type="java.lang.String" mandatory="true"/>
+  <input name="email" type="java.lang.String" mandatory="false"/>
+  <input name="apiToken" type="java.lang.String" mandatory="false"/>
+  <input name="authMode" type="java.lang.String" mandatory="false" defaultValue="API_TOKEN"/>
+  <input name="connectTimeout" type="java.lang.Integer" mandatory="false" defaultValue="30000"/>
+  <input name="readTimeout" type="java.lang.Integer" mandatory="false" defaultValue="60000"/>
+
+  <!-- Operation inputs -->
+  <input name="ticketId" type="java.lang.Long" mandatory="true"/>
+  <input name="comment" type="java.lang.String" mandatory="true"/>
+  <input name="isPublic" type="java.lang.Boolean" mandatory="false" defaultValue="true"/>
+  <input name="authorEmail" type="java.lang.String" mandatory="false"/>
+
+  <!-- Outputs -->
+  <output name="success" type="java.lang.Boolean"/>
+  <output name="errorMessage" type="java.lang.String"/>
+  <output name="ticketId" type="java.lang.Long"/>
+  <output name="updatedAt" type="java.lang.String"/>
+
+  <!-- Pages -->
+  <page id="connectionPage">
+    <widget xsi:type="definition:Text" id="subdomainWidget" inputName="subdomain"/>
+    <widget xsi:type="definition:Text" id="emailWidget" inputName="email"/>
+    <widget xsi:type="definition:Password" id="apiTokenWidget" inputName="apiToken"/>
+    <widget xsi:type="definition:RadioGroup" id="authModeWidget" inputName="authMode">
+      <choices>API_TOKEN</choices>
+      <choices>OAUTH2</choices>
+    </widget>
+    <widget xsi:type="definition:Text" id="connectTimeoutWidget" inputName="connectTimeout"/>
+    <widget xsi:type="definition:Text" id="readTimeoutWidget" inputName="readTimeout"/>
+  </page>
+  <page id="operationPage">
+    <widget xsi:type="definition:Text" id="ticketIdWidget" inputName="ticketId"/>
+    <widget xsi:type="definition:TextArea" id="commentWidget" inputName="comment"/>
+    <widget xsi:type="definition:Checkbox" id="isPublicWidget" inputName="isPublic"/>
+    <widget xsi:type="definition:Text" id="authorEmailWidget" inputName="authorEmail"/>
+  </page>
+</definition:ConnectorDefinition>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definition:ConnectorDefinition
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:definition="http://www.bonitasoft.org/ns/connector/definition/6.1">
+  <id>${zendesk-update-ticket.def.id}</id>
+  <version>${zendesk-update-ticket.def.version}</version>
+  <icon>zendesk-icon.png</icon>
+  <category icon="zendesk-icon.png" id="Zendesk"/>
+
+  <!-- Connection inputs -->
+  <input name="subdomain" type="java.lang.String" mandatory="true"/>
+  <input name="email" type="java.lang.String" mandatory="false"/>
+  <input name="apiToken" type="java.lang.String" mandatory="false"/>
+  <input name="authMode" type="java.lang.String" mandatory="false" defaultValue="API_TOKEN"/>
+  <input name="connectTimeout" type="java.lang.Integer" mandatory="false" defaultValue="30000"/>
+  <input name="readTimeout" type="java.lang.Integer" mandatory="false" defaultValue="60000"/>
+
+  <!-- Operation inputs -->
+  <input name="ticketId" type="java.lang.Long" mandatory="true"/>
+  <input name="subject" type="java.lang.String" mandatory="false"/>
+  <input name="status" type="java.lang.String" mandatory="false"/>
+  <input name="priority" type="java.lang.String" mandatory="false"/>
+  <input name="type" type="java.lang.String" mandatory="false"/>
+  <input name="assigneeEmail" type="java.lang.String" mandatory="false"/>
+  <input name="tags" type="java.lang.String" mandatory="false"/>
+  <input name="customFields" type="java.lang.String" mandatory="false"/>
+
+  <!-- Outputs -->
+  <output name="success" type="java.lang.Boolean"/>
+  <output name="errorMessage" type="java.lang.String"/>
+  <output name="ticketId" type="java.lang.Long"/>
+  <output name="status" type="java.lang.String"/>
+  <output name="updatedAt" type="java.lang.String"/>
+
+  <!-- Pages -->
+  <page id="connectionPage">
+    <widget xsi:type="definition:Text" id="subdomainWidget" inputName="subdomain"/>
+    <widget xsi:type="definition:Text" id="emailWidget" inputName="email"/>
+    <widget xsi:type="definition:Password" id="apiTokenWidget" inputName="apiToken"/>
+    <widget xsi:type="definition:RadioGroup" id="authModeWidget" inputName="authMode">
+      <choices>API_TOKEN</choices>
+      <choices>OAUTH2</choices>
+    </widget>
+    <widget xsi:type="definition:Text" id="connectTimeoutWidget" inputName="connectTimeout"/>
+    <widget xsi:type="definition:Text" id="readTimeoutWidget" inputName="readTimeout"/>
+  </page>
+  <page id="operationPage">
+    <widget xsi:type="definition:Text" id="ticketIdWidget" inputName="ticketId"/>
+    <widget xsi:type="definition:Text" id="subjectWidget" inputName="subject"/>
+    <widget xsi:type="definition:Select" id="statusWidget" inputName="status">
+      <items>new</items>
+      <items>open</items>
+      <items>pending</items>
+      <items>hold</items>
+      <items>solved</items>
+      <items>closed</items>
+    </widget>
+    <widget xsi:type="definition:Select" id="priorityWidget" inputName="priority">
+      <items>low</items>
+      <items>normal</items>
+      <items>high</items>
+      <items>urgent</items>
+    </widget>
+    <widget xsi:type="definition:Select" id="typeWidget" inputName="type">
+      <items>problem</items>
+      <items>incident</items>
+      <items>question</items>
+      <items>task</items>
+    </widget>
+    <widget xsi:type="definition:Text" id="assigneeEmailWidget" inputName="assigneeEmail"/>
+    <widget xsi:type="definition:Text" id="tagsWidget" inputName="tags"/>
+    <widget xsi:type="definition:TextArea" id="customFieldsWidget" inputName="customFields"/>
+  </page>
+</definition:ConnectorDefinition>
